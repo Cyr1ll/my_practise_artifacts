@@ -1,0 +1,7 @@
+you need to place the dockerfiles in their respective directories:
+ vue-todo-api/Dockerfile
+ vue-todo/Dockerfile
+Then save docker-compose.yml in the project folder
+Then run
+ docker-compose up --build
+DONT FORGET TO INSTALL DOCKER BEFORE!)

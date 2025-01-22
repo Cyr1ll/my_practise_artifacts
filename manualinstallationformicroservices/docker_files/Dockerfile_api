@@ -1,0 +1,18 @@
+# API Dockerfile
+FROM node:16
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+ENV DATABASE_URL=postgresql://project_user:yourpassword@db:5432/project_db
+ENV PORT=3000
+ENV JWT_SECRET=secret
+
+RUN npm run migration:run
+
+CMD ["npm", "run", "start"]
+

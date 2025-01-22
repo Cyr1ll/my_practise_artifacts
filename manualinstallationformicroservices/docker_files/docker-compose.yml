@@ -1,0 +1,36 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: project_user
+      POSTGRES_PASSWORD: yourpassword
+      POSTGRES_DB: project_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: ./vue-todo-api
+    environment:
+      DATABASE_URL: postgresql://project_user:yourpassword@db:5432/project_db
+      PORT: 3000
+      JWT_SECRET: secret
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+
+  frontend:
+    build:
+      context: ./vue-todo
+    environment:
+      VITE_API_URL: http://localhost:3000
+    depends_on:
+      - api
+    ports:
+      - "3001:3000"
+
+volumes:
+  postgres_data:
+
