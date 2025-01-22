@@ -1,0 +1,4 @@
+for installation need
+themes(a1 for example) in a1 dir
+plugins(redmine_people for example) in plugins dir
+for python script requires python3 installed on machine
